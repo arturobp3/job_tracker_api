@@ -9,18 +9,20 @@ class JobApplication(models.Model):
     source = models.CharField(max_length=100)
     application_date = models.DateField()
     status = models.CharField(max_length=50, choices=[
+        ('Guardada', 'Guardada'),
         ('Enviado', 'Enviado'),
         ('En Proceso', 'En Proceso'),
-        ('Entrevista', 'Entrevista'),
+        ('Entrevistas', 'Entrevistas'),
         ('Ofrecido', 'Ofrecido'),
         ('Rechazado', 'Rechazado'),
     ])
-    responsibilities = models.TextField(blank=True)
-    technologies = models.CharField(max_length=100, blank=True)
-    experience_level = models.CharField(max_length=50, blank=True)
+    technologies = models.CharField(max_length=100, choices=[
+        ('Java', 'Java'),
+        ('Python', 'Python'),
+        ('Javascript', 'Javascript')
+    ])
     salary_benefits = models.CharField(max_length=100, blank=True)
-    contact = models.CharField(max_length=100, blank=True)
     notes = models.TextField(blank=True)
 
     def __str__(self):
-        return f"{self.position} at {self.company}"
+        return f"{self.company} | {self.position}"
